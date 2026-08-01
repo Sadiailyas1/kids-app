@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Little Learners Worksheets</title>
+  <meta name="description" content="Printable and on-screen learning worksheets for kids" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="theme-color" content="#1F5D50" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="cover">
+    <div class="cover__ring"></div>
+    <div class="cover__ring"></div>
+    <div class="cover__ring"></div>
+    <div class="cover__ring"></div>
+    <h1>Little Learners</h1>
+    <p>Tap a worksheet to start learning ✏️</p>
+  </header>
+
+  <div class="install-banner" id="installBanner">
+    <span>Add this to your home screen!</span>
+    <button class="dismiss" id="dismissBtn">Not now</button>
+    <button id="installBtn">Install</button>
+  </div>
+
+  <main class="folder">
+    <h2>Your worksheets</h2>
+    <div class="grid">
+
+      <a class="card card--counting" data-id="counting-1-10" href="worksheets/counting-1-10.html">
+        <div class="card__tab"></div>
+        <div class="card__body">
+          <span class="card__emoji">🔢</span>
+          <div class="card__title">Counting 1–10</div>
+          <div class="card__meta">Numbers · Ages 4–6</div>
+        </div>
+        <span class="card__done">Done!</span>
+      </a>
+
+      <a class="card card--alphabet" data-id="alphabet-trace" href="worksheets/alphabet-trace.html">
+        <div class="card__tab"></div>
+        <div class="card__body">
+          <span class="card__emoji">🔤</span>
+          <div class="card__title">Alphabet Tracing</div>
+          <div class="card__meta">Letters · Ages 4–6</div>
+        </div>
+        <span class="card__done">Done!</span>
+      </a>
+
+      <a class="card card--shapes" data-id="shapes-match" href="worksheets/shapes-match.html">
+        <div class="card__tab"></div>
+        <div class="card__body">
+          <span class="card__emoji">🔺</span>
+          <div class="card__title">Match the Shapes</div>
+          <div class="card__meta">Shapes · Ages 3–5</div>
+        </div>
+        <span class="card__done">Done!</span>
+      </a>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
