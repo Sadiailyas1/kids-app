@@ -1,5 +1,5 @@
 // Bump this version any time you add or change files, so devices fetch the fresh copies.
-const CACHE_NAME = "little-learners-v1";
+const CACHE_NAME = "little-learners-v2";
 
 // List every file the app needs to work offline.
 // Add a new line here each time you add a worksheet page.
@@ -13,7 +13,8 @@ const FILES_TO_CACHE = [
   "./icons/icon-512.png",
   "./worksheets/counting-1-10.html",
   "./worksheets/alphabet-trace.html",
-  "./worksheets/shapes-match.html"
+  "./worksheets/shapes-match.html",
+  "./worksheets/mental-math-trail.html"
 ];
 
 self.addEventListener("install", (event) => {
