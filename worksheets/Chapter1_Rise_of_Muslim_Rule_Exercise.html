@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rise of Muslim Rule on the Subcontinent — Practice &amp; Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Amiri:ital@0;1&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#f4e9d0;
+    --night:#182a3a;
+    --night-deep:#101d29;
+    --gold:#c99a3b;
+    --gold-bright:#e0b85a;
+    --terracotta:#c1553a;
+    --teal:#2b5f5f;
+    --teal-light:#3d7d7d;
+    --parchment:#f0e6d2;
+    --parchment-dim:#e3d5b4;
+    --line:#8a6f3a;
+    --good:#4d8b5f;
+    --bad:#b0453a;
+    --shadow: 0 12px 30px rgba(0,0,0,0.35);
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(201,154,59,0.10), transparent 55%),
+      radial-gradient(ellipse at 85% 20%, rgba(43,95,95,0.16), transparent 50%),
+      var(--night);
+    color:var(--parchment);
+    font-family:'Nunito', sans-serif;
+    line-height:1.55;
+    padding-bottom:80px;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Cinzel', serif;
+    letter-spacing:0.02em;
+  }
+
+  .eyebrow{
+    font-family:'Amiri', serif;
+    font-style:italic;
+    color:var(--gold-bright);
+    letter-spacing:0.04em;
+  }
+
+  /* ===== TOP BAR ===== */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px;
+    padding:12px 22px;
+    background:rgba(16,29,41,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(201,154,59,0.35);
+  }
+  .brandmark{display:flex; align-items:center; gap:10px; font-family:'Cinzel',serif; font-weight:700; color:var(--gold-bright); font-size:0.95rem;}
+  .brandmark svg{width:26px;height:26px;}
+  .pdf-btn{
+    background:linear-gradient(180deg, var(--gold-bright), var(--gold));
+    color:var(--night-deep);
+    border:none;
+    font-family:'Cinzel', serif;
+    font-weight:700;
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+    padding:10px 18px;
+    border-radius:3px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,0.35);
+    transition:transform .15s ease;
+  }
+  .pdf-btn:hover{transform:translateY(-1px);}
+  .pdf-btn:active{transform:translateY(0px);}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    padding:56px 24px 40px;
+    text-align:center;
+    overflow:hidden;
+    border-bottom:1px solid rgba(201,154,59,0.25);
+  }
+  .hero .eyebrow{display:block; font-size:1rem; margin-bottom:10px;}
+  .hero h1{
+    font-size:clamp(1.7rem, 4vw, 2.6rem);
+    margin:0 auto 14px;
+    max-width:820px;
+    color:var(--parchment);
+    text-shadow:0 2px 12px rgba(0,0,0,0.4);
+  }
+  .hero p.lede{
+    max-width:640px; margin:0 auto; color:var(--parchment-dim); font-size:1.02rem;
+  }
+
+  .route-divider{
+    width:100%;
+    height:34px;
+    margin:26px 0 0;
+  }
+
+  /* compass */
+  .compass{
+    width:70px;height:70px;margin:18px auto 0; opacity:0.85;
+  }
+
+  /* ===== TABS ===== */
+  .tabs{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
+    padding:22px 16px 6px;
+    max-width:1000px; margin:0 auto;
+  }
+  .tab-btn{
+    background:rgba(240,230,210,0.06);
+    border:1px solid rgba(201,154,59,0.4);
+    color:var(--parchment-dim);
+    font-family:'Cinzel', serif;
+    font-size:0.78rem;
+    letter-spacing:0.03em;
+    padding:10px 16px;
+    border-radius:3px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .tab-btn:hover{background:rgba(201,154,59,0.15); color:var(--ink);}
+  .tab-btn.active{
+    background:var(--gold);
+    color:var(--night-deep);
+    border-color:var(--gold);
+    font-weight:700;
+  }
+
+  main{max-width:1000px; margin:0 auto; padding:24px 18px 10px;}
+  section.panel{display:none;}
+  section.panel.active{display:block; animation:fadein .35s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .section-head{
+    display:flex; align-items:baseline; gap:12px; margin-bottom:6px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:1.35rem; color:var(--gold-bright); margin:0;}
+  .section-sub{color:var(--parchment-dim); font-size:0.92rem; margin:0 0 22px;}
+
+  /* ===== FLASHCARDS ===== */
+  .flash-toolbar{display:flex; justify-content:flex-end; margin-bottom:14px;}
+  .ghost-btn{
+    background:transparent; border:1px solid rgba(201,154,59,0.5); color:var(--gold-bright);
+    font-family:'Nunito'; font-weight:700; font-size:0.8rem; padding:7px 14px; border-radius:3px; cursor:pointer;
+  }
+  .ghost-btn:hover{background:rgba(201,154,59,0.12);}
+
+  .flash-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:18px;
+  }
+  .flashcard{
+    perspective:1000px; height:190px; cursor:pointer;
+  }
+  .flashcard-inner{
+    position:relative; width:100%; height:100%; text-align:center;
+    transition:transform .6s cubic-bezier(.4,.2,.2,1);
+    transform-style:preserve-3d;
+  }
+  .flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+  .fc-face{
+    position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden;
+    border-radius:8px; padding:16px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(201,154,59,0.5);
+  }
+  .fc-front{
+    background:linear-gradient(160deg, #21384c, #17293a);
+  }
+  .fc-num{
+    position:absolute; top:10px; left:12px; font-family:'Cinzel'; font-size:0.7rem; color:var(--gold);
+    opacity:0.75;
+  }
+  .fc-term{font-family:'Cinzel'; font-weight:600; font-size:1.08rem; color:var(--gold-bright); line-height:1.3;}
+  .fc-hint{margin-top:10px; font-size:0.72rem; color:var(--parchment-dim); font-family:'Amiri'; font-style:italic;}
+  .fc-back{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-dim));
+    color:var(--night-deep);
+    transform:rotateY(180deg);
+    font-size:0.9rem;
+  }
+  .fc-back p{margin:0;}
+
+  /* ===== QUIZ ===== */
+  .quiz-progress{
+    display:flex; align-items:center; gap:14px; margin-bottom:20px;
+    font-size:0.85rem; color:var(--parchment-dim);
+  }
+  .progress-track{flex:1; height:6px; background:rgba(240,230,210,0.12); border-radius:4px; overflow:hidden;}
+  .progress-fill{height:100%; width:0%; background:linear-gradient(90deg, var(--terracotta), var(--gold)); transition:width .3s ease;}
+
+  .q-card{
+    background:rgba(240,230,210,0.04);
+    border:1px solid rgba(201,154,59,0.28);
+    border-radius:8px;
+    padding:18px 20px;
+    margin-bottom:16px;
+  }
+  .q-card .q-title{font-weight:800; margin-bottom:12px; color:var(--ink); font-size:1rem;}
+  .q-num-badge{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:24px;height:24px; border-radius:50%; background:var(--terracotta); color:#fff;
+    font-family:'Cinzel'; font-size:0.72rem; margin-right:8px;
+  }
+  .opt{
+    display:flex; align-items:center; gap:10px;
+    padding:9px 12px; border-radius:5px; margin-bottom:7px;
+    border:1px solid rgba(240,230,210,0.14);
+    cursor:pointer;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .opt:hover{background:rgba(201,154,59,0.09);}
+  .opt input{accent-color:var(--gold);}
+  .opt.correct{background:rgba(77,139,95,0.22); border-color:var(--good);}
+  .opt.incorrect{background:rgba(176,69,58,0.22); border-color:var(--bad);}
+  .opt label{cursor:pointer; flex:1;}
+
+  .primary-btn{
+    background:linear-gradient(180deg, var(--terracotta), #a3452e);
+    color:#fff; border:none; font-family:'Cinzel'; font-weight:700; letter-spacing:0.03em;
+    padding:12px 26px; border-radius:4px; cursor:pointer; font-size:0.85rem;
+    box-shadow:0 6px 16px rgba(193,85,58,0.3);
+  }
+  .primary-btn:hover{filter:brightness(1.08);}
+
+  .score-seal{
+    display:none;
+    margin:22px auto 6px; width:150px; height:150px;
+    border-radius:50%; border:3px double var(--gold);
+    background:radial-gradient(circle at 35% 30%, #2a4457, #16283a);
+    align-items:center; justify-content:center; flex-direction:column; text-align:center;
+    box-shadow: var(--shadow);
+  }
+  .score-seal.show{display:flex; animation:pop .4s ease;}
+  @keyframes pop{from{transform:scale(0.7); opacity:0;} to{transform:scale(1); opacity:1;}}
+  .score-seal .big{font-family:'Cinzel'; font-size:1.9rem; color:var(--gold-bright); font-weight:700;}
+  .score-seal .small{font-family:'Amiri'; font-style:italic; font-size:0.78rem; color:var(--parchment-dim); margin-top:4px;}
+
+  .center-row{text-align:center; margin-top:18px;}
+
+  /* ===== FILL BLANKS ===== */
+  .fb-item{margin-bottom:16px; font-size:1rem;}
+  .fb-item input{
+    background:rgba(240,230,210,0.08);
+    border:none; border-bottom:2px solid var(--gold);
+    color:var(--gold-bright); font-family:'Nunito'; font-weight:700;
+    padding:4px 8px; width:170px; font-size:0.95rem; text-align:center;
+    border-radius:3px 3px 0 0;
+  }
+  .fb-item input:focus{outline:none; border-color:var(--terracotta);}
+  .fb-item input.correct{background:rgba(77,139,95,0.25); border-color:var(--good); color:#dff2e3;}
+  .fb-item input.incorrect{background:rgba(176,69,58,0.25); border-color:var(--bad); color:#f7dcd8;}
+  .fb-answer-note{display:block; font-size:0.78rem; color:var(--parchment-dim); margin-top:3px; font-family:'Amiri'; font-style:italic;}
+
+  /* ===== TRUE FALSE ===== */
+  .tf-item{
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    background:rgba(240,230,210,0.04); border:1px solid rgba(201,154,59,0.25);
+    padding:14px 18px; border-radius:7px; margin-bottom:12px;
+  }
+  .tf-statement{flex:1; min-width:220px; font-size:0.96rem;}
+  .tf-buttons{display:flex; gap:8px;}
+  .tf-buttons button{
+    border:1px solid var(--gold); background:transparent; color:var(--gold-bright);
+    font-family:'Cinzel'; font-size:0.72rem; padding:7px 14px; border-radius:3px; cursor:pointer; font-weight:700;
+  }
+  .tf-buttons button.chosen-correct{background:var(--good); color:#fff; border-color:var(--good);}
+  .tf-buttons button.chosen-incorrect{background:var(--bad); color:#fff; border-color:var(--bad);}
+  .tf-explain{width:100%; font-size:0.8rem; color:var(--parchment-dim); margin-top:8px; display:none; font-family:'Amiri'; font-style:italic;}
+  .tf-explain.show{display:block;}
+
+  /* ===== CONTENT REVIEW ===== */
+  .cr-item{
+    background:rgba(240,230,210,0.04); border:1px solid rgba(201,154,59,0.25);
+    border-radius:7px; padding:16px 20px; margin-bottom:14px;
+  }
+  .cr-item .cr-q{font-weight:800; margin-bottom:8px; color:var(--ink);}
+  .cr-item textarea{
+    width:100%; min-height:70px; background:rgba(240,230,210,0.06); border:1px solid rgba(240,230,210,0.2);
+    border-radius:5px; color:var(--ink); font-family:'Nunito'; padding:10px; font-size:0.9rem; resize:vertical;
+  }
+  .reveal-btn{
+    background:none; border:none; color:var(--gold-bright); font-family:'Amiri'; font-style:italic; cursor:pointer;
+    font-size:0.82rem; margin-top:8px; text-decoration:underline; padding:0;
+  }
+  .cr-sample{
+    display:none; margin-top:8px; padding:10px 12px; background:rgba(43,95,95,0.18);
+    border-left:3px solid var(--teal-light); border-radius:0 5px 5px 0; font-size:0.86rem; color:var(--parchment-dim);
+  }
+  .cr-sample.show{display:block;}
+
+  .going-further{
+    margin-top:26px; padding:18px 20px; border:1px dashed var(--gold); border-radius:7px;
+    background:rgba(201,154,59,0.06);
+  }
+  .going-further h3{margin:0 0 8px; font-size:1rem; color:var(--gold-bright);}
+
+  footer{
+    text-align:center; padding:30px 18px 10px; color:var(--parchment-dim); font-size:0.78rem; font-family:'Amiri'; font-style:italic;
+  }
+
+  /* ===== PRINT ===== */
+  @media print{
+    body{background:#fff !important; color:#1a1a1a !important; padding:0;}
+    .topbar, .tabs, .flash-toolbar, .ghost-btn, .primary-btn, .center-row, .tf-buttons, .reveal-btn, textarea, .fb-item input{display:none !important;}
+    .hero{border:none; padding:10px 0 20px;}
+    .hero h1{color:#1a1a1a; text-shadow:none;}
+    .hero p.lede{color:#333;}
+    section.panel{display:block !important; page-break-before:always;}
+    section.panel:first-of-type{page-break-before:auto;}
+    .flash-grid{display:block;}
+    .flashcard{height:auto; margin-bottom:14px; page-break-inside:avoid;}
+    .flashcard-inner{position:static; transform:none !important; display:flex; gap:10px;}
+    .fc-face{position:static; transform:none !important; box-shadow:none; width:50%; border-radius:6px;}
+    .fc-front{background:#eef3f6 !important; color:#1a1a1a;}
+    .fc-term{color:#1a1a1a;}
+    .fc-back{background:#f7f0dd !important; color:#1a1a1a;}
+    .q-card, .tf-item, .cr-item{border:1px solid #ccc; page-break-inside:avoid; background:#fff;}
+    .q-title, .cr-q, .tf-statement{color:#1a1a1a;}
+    .opt{border:1px solid #ddd; color:#1a1a1a;}
+    .opt::after{content: " ";}
+    .q-card::after{
+      content: "Answer: " attr(data-answer);
+      display:block; margin-top:8px; font-weight:700; color:#a3452e; font-size:0.85rem;
+    }
+    .tf-item::after{content:"Answer: " attr(data-answer); display:block; font-weight:700; color:#a3452e; margin-top:6px;}
+    .fb-item::after{content:" Answer: " attr(data-answer); font-weight:700; color:#a3452e;}
+    .cr-sample{display:block !important; background:#f1f1f1;}
+    .score-seal{display:none !important;}
+    a[href]:after{content:"";}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brandmark">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="18" stroke="#e0b85a" stroke-width="1.5"/>
+      <path d="M20 4 L22 18 L36 20 L22 22 L20 36 L18 22 L4 20 L18 18 Z" fill="#e0b85a"/>
+    </svg>
+    Chapter 1 &middot; Study Deck
+  </div>
+  <button class="pdf-btn" onclick="window.print()">Download as PDF</button>
+</div>
+
+<div class="hero">
+  <span class="eyebrow">Social Studies &middot; Grade 6 &middot; History</span>
+  <h1>The Rise of Muslim Rule on the Subcontinent</h1>
+  <p class="lede">Trade winds, wandering saints, and two great waves of change — practice what you've read with flashcards, quizzes, and review questions built from your textbook chapter.</p>
+  <svg class="compass" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="46" stroke="#c99a3b" stroke-width="1"/>
+    <circle cx="50" cy="50" r="3" fill="#e0b85a"/>
+    <path d="M50 8 L56 46 L50 50 L44 46 Z" fill="#c1553a"/>
+    <path d="M50 92 L44 54 L50 50 L56 54 Z" fill="#f0e6d2"/>
+    <path d="M8 50 L46 44 L50 50 L46 56 Z" fill="#f0e6d2" opacity="0.6"/>
+    <path d="M92 50 L54 56 L50 50 L54 44 Z" fill="#f0e6d2" opacity="0.6"/>
+  </svg>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab-btn active" data-tab="flash">Flashcards</button>
+  <button class="tab-btn" data-tab="quiz">Multiple Choice</button>
+  <button class="tab-btn" data-tab="blanks">Fill in the Blanks</button>
+  <button class="tab-btn" data-tab="tf">True or False</button>
+  <button class="tab-btn" data-tab="review">Content Review</button>
+</div>
+
+<main>
+
+  <!-- ============ FLASHCARDS ============ -->
+  <section class="panel active" id="flash">
+    <div class="section-head"><h2>Flashcards</h2></div>
+    <p class="section-sub">Tap a card to reveal the meaning. There are 12 key people, places, and ideas from the chapter.</p>
+    <div class="flash-toolbar"><button class="ghost-btn" id="flipAllBtn">Flip all cards</button></div>
+    <div class="flash-grid" id="flashGrid"></div>
+  </section>
+
+  <!-- ============ MCQ QUIZ ============ -->
+  <section class="panel" id="quiz">
+    <div class="section-head"><h2>Multiple Choice Quiz</h2></div>
+    <p class="section-sub">Choose the best answer for each question, then check your score.</p>
+    <div class="quiz-progress">
+      <span id="quizProgressLabel">0 of 12 answered</span>
+      <div class="progress-track"><div class="progress-fill" id="quizProgressFill"></div></div>
+    </div>
+    <div id="quizList"></div>
+    <div class="center-row">
+      <button class="primary-btn" id="checkQuizBtn">Check my answers</button>
+      <div class="score-seal" id="scoreSeal">
+        <div class="big" id="scoreBig">0 / 12</div>
+        <div class="small">score sealed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FILL IN THE BLANKS ============ -->
+  <section class="panel" id="blanks">
+    <div class="section-head"><h2>Fill in the Blanks</h2></div>
+    <p class="section-sub">Complete each sentence with the correct word from the chapter.</p>
+    <div id="blanksList"></div>
+    <div class="center-row"><button class="primary-btn" id="checkBlanksBtn">Check my answers</button></div>
+  </section>
+
+  <!-- ============ TRUE / FALSE ============ -->
+  <section class="panel" id="tf">
+    <div class="section-head"><h2>True or False</h2></div>
+    <p class="section-sub">Decide whether each statement is true or false. Wrong guesses reveal a quick explanation.</p>
+    <div id="tfList"></div>
+  </section>
+
+  <!-- ============ CONTENT REVIEW ============ -->
+  <section class="panel" id="review">
+    <div class="section-head"><h2>Content Review</h2></div>
+    <p class="section-sub">Write your answer in your own words, then reveal a sample answer to compare.</p>
+    <div id="reviewList"></div>
+
+    <div class="going-further">
+      <h3>Going Further</h3>
+      <p style="margin:0 0 10px; font-size:0.9rem; color:var(--parchment-dim);">Find out about the goods that were traded in those days along the Arabian Sea route. Jot down your notes below.</p>
+      <textarea rows="4" placeholder="e.g. spices, textiles, horses, precious stones..." style="width:100%; background:rgba(240,230,210,0.06); border:1px solid rgba(240,230,210,0.2); border-radius:5px; color:var(--ink); font-family:'Nunito'; padding:10px; font-size:0.9rem;"></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer>Based on Chapter 1 &middot; The Rise of Muslim Rule on the Subcontinent &middot; Oxford History Series</footer>
+
+<script>
+// ---------------- DATA ----------------
+const flashcards = [
+  {term:"Muhammad bin Qasim", back:"The Arab general who conquered Sindh in the eighth century, making the sea trade routes safe again."},
+  {term:"Sindh", back:"The region conquered by Muhammad bin Qasim; it became the base of early Arab rule on the subcontinent."},
+  {term:"Sufi Saints", back:"Holy teachers from Islamic West Asia who settled in Sindh and won people over through fair governance, not force."},
+  {term:"First Wave", back:"Islamic influence introduced peacefully in Sindh, led by Sufi saints rather than conquest."},
+  {term:"Daibul", back:"The port from where Muhammad bin Qasim's forces first entered Sindh."},
+  {term:"Bhambore", back:"A site outside Karachi, known today as the 'Gateway of Islam.'"},
+  {term:"Persian Gulf & Arabian Sea", back:"The sea routes Arab traders sailed to reach the subcontinent from the west."},
+  {term:"Punjab", back:"Along with Sindh, the other region ruled by the early Arabs on the subcontinent."},
+  {term:"Muslim Turks of Central Asia", back:"A group who grew powerful in northern Pakistan and Afghanistan, and carried Islam further into India."},
+  {term:"Second Wave", back:"Islamic influence that arrived from the north in the tenth century, through Central Asia."},
+  {term:"Fabled Wealth", back:"The legendary riches of Indian states that attracted the Central Asian Turks, in addition to their wish to spread Islam."},
+  {term:"The Caliphate", back:"The Islamic empire that, by 750 CE, stretched from Spain to Central Asia — it expanded mainly toward Central Asia rather than south into India."}
+];
+
+const quizData = [
+  {q:"Who conquered Sindh in the eighth century?", opts:["Mahmud of Ghazni","Muhammad bin Qasim","Sultan Muhammad","Ibn Battuta"], correct:1},
+  {q:"Why had Arab merchants stopped travelling across the Arabian Sea before this conquest?", opts:["Storms at sea","High taxes","Fear of pirates","Lack of ships"], correct:2},
+  {q:"Which two water routes did Arab traders sail to enter the subcontinent from the west?", opts:["Red Sea and the Nile","Persian Gulf and Arabian Sea","Indian Ocean and Bay of Bengal","Caspian Sea and Black Sea"], correct:1},
+  {q:"Which two regions did the early Arabs come to rule on the subcontinent?", opts:["Bengal and Punjab","Sindh and Punjab","Sindh and Kashmir","Punjab and Gujarat"], correct:1},
+  {q:"Who was mainly responsible for the first wave of Islamic influence?", opts:["The Sultan's army","Sufi saints","Central Asian Turks","Traders from China"], correct:1},
+  {q:"Why did many people in Sindh willingly convert to Islam?", opts:["They were forced by soldiers","They admired the saints' fair governance","They wanted trading rights","They were promised land"], correct:1},
+  {q:"The site outside Karachi known as the 'Gateway of Islam' is:", opts:["Daibul","Multan","Bhambore","Thatta"], correct:2},
+  {q:"From which port did Muhammad bin Qasim's forces enter Sindh?", opts:["Bhambore","Daibul","Karachi","Thatta"], correct:1},
+  {q:"When did the second wave of Islamic influence reach the subcontinent?", opts:["Eighth century","Ninth century","Tenth century","Twelfth century"], correct:2},
+  {q:"From which direction did the second wave of Islamic influence arrive?", opts:["South, by sea","North, by land","East, by land","West, by sea"], correct:1},
+  {q:"Besides religion, what else attracted the Central Asian Turks to India?", opts:["A cooler climate","Fertile farmland only","The fabled wealth of Indian states","Better trade unions"], correct:2},
+  {q:"On the map 'The Caliphate in 750,' whose conquests are shown for the years 632–656?", opts:["Umayyad Caliphs","The first three Caliphs","Abbasid Caliphs","Ottoman Caliphs"], correct:1}
+];
+
+const blanksData = [
+  {before:"Muhammad bin Qasim conquered", after:"in the eighth century.", answer:"sindh"},
+  {before:"Fear of", after:"had prevented Arab merchants from crossing the Arabian Sea.", answer:"pirates"},
+  {before:"The first wave of Islamic influence came through", after:"saints.", answer:"sufi"},
+  {before:"The port of Daibul is where Muhammad bin Qasim's forces entered", after:".", answer:"sindh"},
+  {before:"The second wave of Islamic influence came from the", after:"in the tenth century.", answer:"north"},
+  {before:"The Central Asian Turks were attracted to India partly by its", after:"wealth.", answer:"fabled"}
+];
+
+const tfData = [
+  {s:"Muhammad bin Qasim conquered Sindh in the eighth century.", answer:true, explain:"True — this is stated directly in the chapter."},
+  {s:"The first wave of Islamic influence came through military conquest by the Central Asian Turks.", answer:false, explain:"False — the first wave came through the peaceful, fair governance of Sufi saints in Sindh."},
+  {s:"The Arabs ruled Sindh and part of the Punjab.", answer:true, explain:"True — trade and rule extended across both regions."},
+  {s:"Bhambore is known as the 'Gateway of Islam.'", answer:true, explain:"True — it is the site outside Karachi with this name."},
+  {s:"The second wave of Islamic influence happened before the first wave.", answer:false, explain:"False — the second wave came later, in the tenth century, after the first wave in Sindh."},
+  {s:"The Islamic Caliphate expanded mainly southward into the Indian subcontinent rather than toward Central Asia.", answer:false, explain:"False — the chapter says the Caliphate expanded towards Central Asia rather than spreading south into India."}
+];
+
+const reviewData = [
+  {q:"1. Why did the traditional trade routes through the Arabian Sea become unsafe?", sample:"Because of the fear of pirates, Arab merchants stopped travelling safely across the Arabian Sea, making the ancient trade routes through Indian waters unsafe."},
+  {q:"2. Why did the trade begin again?", sample:"Because Muhammad bin Qasim conquered Sindh, which brought peace and security to the region, allowing the Arabs to renew their trade through the Persian Gulf and Arabian Sea."},
+  {q:"3. What attracted the Central Asians to India?", sample:"Their wish to spread Islam further into the subcontinent, along with the fabled wealth of the Indian states."}
+];
+
+// ---------------- TABS ----------------
+document.getElementById('tabs').addEventListener('click', e=>{
+  const btn = e.target.closest('.tab-btn');
+  if(!btn) return;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(btn.dataset.tab).classList.add('active');
+});
+
+// ---------------- FLASHCARDS ----------------
+const flashGrid = document.getElementById('flashGrid');
+flashcards.forEach((card, i)=>{
+  const el = document.createElement('div');
+  el.className='flashcard';
+  el.innerHTML = `
+    <div class="flashcard-inner">
+      <div class="fc-face fc-front">
+        <span class="fc-num">${String(i+1).padStart(2,'0')}</span>
+        <div class="fc-term">${card.term}</div>
+        <div class="fc-hint">tap to reveal</div>
+      </div>
+      <div class="fc-face fc-back"><p>${card.back}</p></div>
+    </div>`;
+  el.addEventListener('click', ()=> el.classList.toggle('flipped'));
+  flashGrid.appendChild(el);
+});
+let allFlipped = false;
+document.getElementById('flipAllBtn').addEventListener('click', ()=>{
+  allFlipped = !allFlipped;
+  document.querySelectorAll('.flashcard').forEach(c=> c.classList.toggle('flipped', allFlipped));
+  document.getElementById('flipAllBtn').textContent = allFlipped ? "Flip all cards back" : "Flip all cards";
+});
+
+// ---------------- QUIZ ----------------
+const quizList = document.getElementById('quizList');
+quizData.forEach((item, i)=>{
+  const card = document.createElement('div');
+  card.className='q-card';
+  card.dataset.answer = item.opts[item.correct];
+  let optsHtml = item.opts.map((opt, j)=>`
+    <div class="opt" data-idx="${j}">
+      <input type="radio" name="q${i}" id="q${i}o${j}" value="${j}">
+      <label for="q${i}o${j}">${opt}</label>
+    </div>`).join('');
+  card.innerHTML = `<div class="q-title"><span class="q-num-badge">${i+1}</span>${item.q}</div>${optsHtml}`;
+  quizList.appendChild(card);
+});
+quizList.addEventListener('change', updateQuizProgress);
+function updateQuizProgress(){
+  const answered = quizData.filter((_,i)=> document.querySelector(`input[name="q${i}"]:checked`)).length;
+  document.getElementById('quizProgressLabel').textContent = `${answered} of ${quizData.length} answered`;
+  document.getElementById('quizProgressFill').style.width = (answered/quizData.length*100)+'%';
+}
+document.getElementById('checkQuizBtn').addEventListener('click', ()=>{
+  let score = 0;
+  quizData.forEach((item, i)=>{
+    const chosen = document.querySelector(`input[name="q${i}"]:checked`);
+    const opts = document.querySelectorAll(`#quizList .q-card:nth-child(${i+1}) .opt`);
+    opts.forEach(o=>o.classList.remove('correct','incorrect'));
+    opts[item.correct].classList.add('correct');
+    if(chosen){
+      const idx = parseInt(chosen.value);
+      if(idx === item.correct) score++;
+      else opts[idx].classList.add('incorrect');
+    }
+  });
+  document.getElementById('scoreBig').textContent = `${score} / ${quizData.length}`;
+  document.getElementById('scoreSeal').classList.add('show');
+});
+
+// ---------------- FILL IN BLANKS ----------------
+const blanksList = document.getElementById('blanksList');
+blanksData.forEach((item,i)=>{
+  const row = document.createElement('div');
+  row.className='fb-item';
+  row.dataset.answer = item.answer;
+  row.innerHTML = `${i+1}. ${item.before} <input type="text" id="fb${i}" autocomplete="off"> ${item.after}
+    <span class="fb-answer-note" id="fbNote${i}"></span>`;
+  blanksList.appendChild(row);
+});
+document.getElementById('checkBlanksBtn').addEventListener('click', ()=>{
+  blanksData.forEach((item,i)=>{
+    const input = document.getElementById(`fb${i}`);
+    const note = document.getElementById(`fbNote${i}`);
+    const val = input.value.trim().toLowerCase();
+    input.classList.remove('correct','incorrect');
+    if(val === item.answer){
+      input.classList.add('correct');
+      note.textContent = '';
+    } else {
+      input.classList.add('incorrect');
+      note.textContent = `Correct answer: ${item.answer}`;
+    }
+  });
+});
+
+// ---------------- TRUE / FALSE ----------------
+const tfList = document.getElementById('tfList');
+tfData.forEach((item,i)=>{
+  const row = document.createElement('div');
+  row.className='tf-item';
+  row.dataset.answer = item.answer ? "True" : "False";
+  row.innerHTML = `
+    <div class="tf-statement">${i+1}. ${item.s}</div>
+    <div class="tf-buttons">
+      <button data-val="true">True</button>
+      <button data-val="false">False</button>
+    </div>
+    <div class="tf-explain" id="tfExplain${i}">${item.explain}</div>`;
+  row.querySelectorAll('.tf-buttons button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const chosenVal = btn.dataset.val === 'true';
+      const buttons = row.querySelectorAll('.tf-buttons button');
+      buttons.forEach(b=>b.classList.remove('chosen-correct','chosen-incorrect'));
+      if(chosenVal === item.answer){
+        btn.classList.add('chosen-correct');
+      } else {
+        btn.classList.add('chosen-incorrect');
+      }
+      document.getElementById(`tfExplain${i}`).classList.add('show');
+    });
+  });
+  tfList.appendChild(row);
+});
+
+// ---------------- CONTENT REVIEW ----------------
+const reviewList = document.getElementById('reviewList');
+reviewData.forEach((item,i)=>{
+  const box = document.createElement('div');
+  box.className='cr-item';
+  box.innerHTML = `
+    <div class="cr-q">${item.q}</div>
+    <textarea placeholder="Type your answer here..."></textarea>
+    <button class="reveal-btn" id="revealBtn${i}">Show sample answer</button>
+    <div class="cr-sample" id="crSample${i}">${item.sample}</div>`;
+  reviewList.appendChild(box);
+  box.querySelector(`#revealBtn${i}`).addEventListener('click', function(){
+    const sample = box.querySelector(`#crSample${i}`);
+    sample.classList.toggle('show');
+    this.textContent = sample.classList.contains('show') ? "Hide sample answer" : "Show sample answer";
+  });
+});
+</script>
+
+</body>
+</html>
